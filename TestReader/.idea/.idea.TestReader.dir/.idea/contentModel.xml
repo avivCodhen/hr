@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\.Projects\Dad\HR\TestReader" t="IncludeRecursive">
+      <e p="TestReader.csproj" t="IncludeRecursive" />
+    </e>
+    <e p="C:\Users\aviv\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\aviv\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_.19.01" t="ExcludeRecursive" />
+  </component>
+</project>

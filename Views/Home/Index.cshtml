@@ -1,0 +1,59 @@
+﻿@using System.Web
+@{
+    ViewData["Title"] = "Home Page";
+    @model SearchModel
+
+    
+    }
+
+<div class="container pt-5">
+    <div class="row w-100 pt-5">
+        <form asp-controller="Home" asp-method="Post" asp-action="SearchText" class="form-inline  w-100 justify-content-center">
+            <div class="form-group mx-sm-3 mb-2 col-8">
+                <input style="direction: rtl" asp-for="Text" placeholder="מילות חיפוש" class="w-100 form-control">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2 col-2">חפש</button>
+            <div class="col-6 pt-5">
+                @{
+                    if (Model.Files != null)
+                    {
+                        foreach (var file in Model.Files)
+                        {
+                            <p>@file.Name <span class="path"  data-path="@HttpUtility.UrlEncode(file.Path)" style="color:#1b6ec2; cursor:pointer;"> פתח קובץ </span></p>
+                        }
+                    }
+                }
+            </div>
+            
+            <div class="col-6 pt-5">
+                <h5 class="text-danger">קבצים עם שגיאה</h5>
+                @{
+                    if (Model.Files != null)
+                    {
+                        foreach (var file in Model.CorruptFiles)
+                        {
+                            <p class="text-danger">@file.Name <span class="path" data-path="@HttpUtility.UrlEncode(file.Path)" style="color:#1b6ec2; cursor:pointer;"> פתח קובץ </span></p>
+                        }
+                    }
+                }
+            </div>
+        </form>
+
+    </div>
+</div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $(".path").on("click", function(){
+        var path = $(this).data("path");
+        $.ajax({
+            url: "home/openfile?path="+path,
+            type: 'GET',
+            success: function(res) {
+                console.log(res);
+            }
+        });
+    });
+});
+</script>
